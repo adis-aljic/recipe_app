@@ -15,4 +15,4 @@ app.listen(PORT,()=>console.log(`Server is listening on port ${PORT}`));
 
 const db = mysql.createConnection(con)
 db.connect((err) => (err) ? err : console.log("database is connected"));
-app.use(`/`,login_page);
+app.use(`/user`,login_page);
