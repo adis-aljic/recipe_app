@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap');
+@mixin flex_center($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+    
+}
+$background: (linear-gradient(34deg, rgba(200,228,255,1) 4%, rgba(126,135,245,1) 35%, rgba(49,102,241,1) 60%, rgba(18,58,161,1) 91%));
+nav{
+
+    border-bottom: 1px solid wheat;
+}
+.sidenav{
+    width: 200px;
+}
+body{
+    background: $background;
+}
+@media (max-width:480px) {
+    nav{
+        .brand-logo{
+        font-size: 1.2rem;
+        }
+    }   
+}
+#contact_list{
+    @include flex_center(row)
+}
+#top{
+    float: right;
+    margin: 0 2rem;
+    width: 3rem;
+}
+
+li{
+    padding: 0.2rem ;
+}
+
+
+.row{
+    padding-top: 3rem;
+}
