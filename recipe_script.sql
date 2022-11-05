@@ -1,4 +1,4 @@
-
+-- drop database recipe;
 CREATE DATABASE IF NOT EXISTS recipe;
 USE recipe;
 
@@ -13,7 +13,7 @@ timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 CREATE TABLE user (
 user_id INT PRIMARY KEY AUTO_INCREMENT,
-username VARCHAR(10) UNIQUE NOT NULL,
+username VARCHAR(30) UNIQUE NOT NULL,
 password VARCHAR (10)  NOT NULL,
 first_name VARCHAR (20),
 last_name VARCHAR(20),
@@ -39,3 +39,16 @@ quantity VARCHAR(4) NOT NULL
  ingredient_id INT,
  FOREIGN KEY(ingredient_id) REFERENCES ingredient(ingredient_id)
  );
+ select * from user;
+ INSERT INTO user(username,password,first_name,last_name,admin)
+ VALUES ("a@a.com","password","Adis","Aljic","true");
+ 
+ DELIMITER //
+
+CREATE PROCEDURE validate_user(in username_input VARCHAR(10),IN password_input VARCHAR (10))
+BEGIN
+	SELECT username, password  FROM user WHERE username = username_input AND password = password_input;
+
+END //
+
+DELIMITER ;

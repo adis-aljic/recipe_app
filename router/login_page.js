@@ -10,9 +10,8 @@ router.get("/", (req, res) => {
 router.post(`/login`, (req, res) => {
     const body = req.body;
     console.log(body);
-    login_verification(`${body.email}`, `${body.password}`)
-        .then(response => console.log(response))
-
+    login_verification(`${body.email}`, `${body.password}`,res)
+ 
 
 });
 

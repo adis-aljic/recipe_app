@@ -1,17 +1,27 @@
-const mysql = require("mysql2/promise")
+const mysql = require("mysql2")
 const con = require("../connectDB");
-const db = mysql.createConnection(con)
+const db = mysql.createPool(con);
+const path = require("path");
 
- async function login_verification (username, password) {
-   const response = await db.query(`CALL validate_user("${username}","${password}")`, (err, data) => {
+
+  function login_verification (username, password,res) {
+      db.query(`CALL validate_user("${username}","${password}")`, (err, data) => {
         if (err) {
-            throw err
+                throw err
         }
+        else if(data[0].length == 0) 
+        {
+            res.sendFile(path.join(process.cwd(), 'html/index.html'));
         
-        return data
+        }
+        else{
+            console.log("sus");
+        }
     })
-    return  response
+
+    // db.end()
 }
+
 
 
 
