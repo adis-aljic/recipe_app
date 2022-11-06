@@ -17,7 +17,6 @@ username VARCHAR(30) UNIQUE NOT NULL,
 password VARCHAR (10)  NOT NULL,
 first_name VARCHAR (20),
 last_name VARCHAR(20),
-admin ENUM ("true","false"),
 safe_word VARCHAR(10),
 timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -40,14 +39,14 @@ quantity VARCHAR(4) NOT NULL
  FOREIGN KEY(ingredient_id) REFERENCES ingredient(ingredient_id)
  );
  select * from user;
- INSERT INTO user(username,password,first_name,last_name,admin)
- VALUES ("a@a.com","password","Adis","Aljic","true");
+ INSERT INTO user(username,password,first_name,last_name)
+ VALUES ("a@a.com","password","Adis","Aljic");
  
  DELIMITER //
 
-CREATE PROCEDURE validate_user(in username_input VARCHAR(10),IN password_input VARCHAR (10))
+CREATE PROCEDURE validate_user()
 BEGIN
-	SELECT username, password  FROM user WHERE username = username_input AND password = password_input;
+	SELECT username, password  FROM user;
 
 END //
 

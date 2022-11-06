@@ -9,7 +9,15 @@ app.use(express.static(__dirname));
 app.use(express.urlencoded({
     extended: true
 }));
-
+app.use((err, req, res, next) => {
+    console.log(err.stack);
+    console.log(err.name);
+    console.log(err.code);
+  
+    res.status(500).json({
+      message: "Something went  wrong",
+    });
+  });
 PORT = 3000;
 app.listen(PORT,()=>console.log(`Server is listening on port ${PORT}`));
 
