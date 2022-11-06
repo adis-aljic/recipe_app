@@ -44,6 +44,9 @@ router.post(`/register`, (req, res) => {
 
 });
 
+router.get("/:id", (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'html/user.html'));
+})
 
 
 module.exports = router

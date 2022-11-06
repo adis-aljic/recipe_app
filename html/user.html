@@ -1,0 +1,199 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <title>Cooking with fun</title>
+</head>
+
+<body>
+    <header class="scrollspy">
+        <nav class="nav-wrapper transparent">
+            <div class="container">
+                <a id="title" class="brand-logo center center-align scrollspy">Cooking with fun</a>
+
+                <a href="#" class="sidenav-trigger" data-target="mobile-menu">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="../html/index.html">Login</a></li>
+                    <li><a href="../html/register.html">Registration</a></li>
+                    <li><a href="#contact">contact</a></li>
+
+
+                </ul>
+                <ul class="sidenav grey lighten-2" id="mobile-menu">
+                    <li><a href="../html/index.html">Login</a></li>
+                    <li><a href="../html/register.html">Registration</a></li>
+                    <li><a href="#contact">Contact</a></li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="section container">
+        <div class="row">
+            <div class="col s12 m5 offset-m4">
+                <form action="addrecipe" method="post" autocomplete="off">
+                    <div class="card indigo lighten-1">
+                        <div class="card-content white-text">
+                            <span class="card-title center">ADD RECIPE</span>
+                            <div class='row'>
+                                <div class='input-field col s10 offset-s1 l4 offset-l4'>
+                                    <input class='validate' type='text' autocomplete="off" name='recipe_name'
+                                        id='recipe_name'>
+                                    <label class="white-text" for='recipe_name'>Recipe name</label>
+                                    <!-- <span class="helper-text" data-error="wrong" data-success="right">Enter dishes name</span> -->
+
+                                </div>
+                            </div>
+
+                            <div class='row'>
+                                <div class='input-field col s10 offset-s1 l4 offset-l4'>
+
+                                    <label>
+                                        <input name="type_of_meal" type="radio" value="Appetizer" checked>
+                                        <span class="white-text">Appetizer</span>
+                                    </label>
+                                </div>
+                                <div class='input-field col s10 offset-s1 l4 offset-l4'>
+
+                                    <label>
+                                        <input name="type_of_meal" type="radio" value="Main Course">
+                                        <span class="white-text">Main Course</span>
+                                    </label>
+                                </div>
+                                <div class='input-field col s10 offset-s1 l4 offset-l4'>
+
+                                    <label>
+                                        <input name="type_of_meal" type="radio" value="Dessert">
+                                        <span class="white-text">Dessert</span>
+                                    </label>
+                                </div>
+                                <div class='input-field col s10 offset-s1 l4 offset-l4'>
+
+                                    <label>
+                                        <input name="type_of_meal" type="radio" value="Dring">
+                                        <span class="white-text"> Drink</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <h5 class="center">Ingridients</h4>
+                                    <div class='input-field col s7 offset-s1 l4 offset-l4' id="ingridients">
+                                        <input class='validate' type='text' autocomplete="off" name='ingridients'
+                                            placeholder="ingridient">
+                                        <input class='validate' type='text' autocomplete="off" name='ingridients'
+                                            placeholder="ingridient">
+                                        <input class='validate' type='text' autocomplete="off" name='ingridients'
+                                            placeholder="ingridient">
+                                    </div>
+
+                                    <div class='input-field col s3  l4 offset-l4' id="quantity">
+                                        <input class='validate' type='text' autocomplete="off" name='quantity'
+                                            placeholder="gram">
+                                        <input class='validate' type='text' autocomplete="off" name='quantity'
+                                            placeholder="gram">
+                                        <input class='validate' type='text' autocomplete="off" name='quantity'
+                                            placeholder="gram">
+                                    </div>
+
+                            </div>
+                            <div class="row  ">
+                                <div class="col l6">
+
+                                    <button type="button" id="add_ingridients"
+                                        class="btn blue darken-2 z-depth-2 btn-floating btn-medium center-align "><i
+                                            class="material-icons">add</i>
+                                    </button>
+                                    <span style="padding: 0.5rem;">Add more ingridients</span>
+                                </div>
+                                <div class="col l6">
+
+                                    <button type="button" id="remove_ingridients"
+                                        class="btn blue darken-2 z-depth-2 btn-floating btn-medium center-align "><i
+                                            class="material-icons">remove</i>
+                                    </button>
+                                    <span style="padding: 1rem;">Remove ingridients</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s10 offset-s1">
+                                    <div class="input-field col s12 ">
+                                        <textarea id="textarea1" class="white-text    materialize-textarea"></textarea>
+                                        <label class="grey-text " for="textarea1">Describe steps for creating meal</label>
+                                      </div>
+
+                                </div>
+                            </div>
+
+                            <div class='row'>
+                                <button type='submit'
+                                    class='col s8 offset-s2 l2 offset-l5 btn waves-effect indigo'>Submit</button>
+                            </div>
+                        </div>
+
+                </form>
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+
+    <footer class="page-footer grey darken-3 scrollspy" id="contact">
+        <a href="#title"><img id="top" class="responsive-img" src="../img/up-arrow.png"></a>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <h2 class="center">Contact page</h2>
+                    <ul id="contact_list">
+
+                        <li class="flow-text text-contact">Contact me via</li>
+
+                        <li><a href="mailto:adis.qm@gmail.com" class=" btn-floating btn-small red darken-4"
+                                title="adis.qm@gmail.com" data-tooltip="Gmail">
+                                <i class="material-icons">email</i>
+                            </a></li>
+                        <li><a href="https://www.facebook.com/adis.aljic/" title="Facebook"
+                                class=" btn-floating btn-small blue darken-4" data-tooltip="Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a></li>
+                        <li><a href="https://github.com/adis-aljic" title="Github"
+                                class=" btn-floating btn-small black darken-4" data-tooltip="Github">
+                                <i class="fab fa-github"></i>
+                            </a></li>
+                        <li><a href="https://www.linkedin.com/in/adis-aljic-056b13239/"
+                                class=" btn-floating btn-small blue darken-4" title="Linkedin">
+                                <i class="fab fa-linkedin"></i>
+                            </a></li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright grey darken-4">
+            <div class="container center-align">&copy; 2022 Adis Aljic </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../js/user.js"></script>
+</body>
+
+</html>
