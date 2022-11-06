@@ -18,14 +18,11 @@ router.post(`/login`, (req, res, next) => {
     login_verification().then(data => {
         const users = data[0];
         users.forEach(user => {
-            console.log(user);
-            console.log(req.body);
             if (user.username == email && user.password == password) {
-                console.log("sus");
+                return res.redirect(`/recipe/${user.user_id}`)
 
             }
             else {
-                console.log("not");
             }
         });
     })
@@ -44,9 +41,7 @@ router.post(`/register`, (req, res) => {
 
 });
 
-router.get("/:id", (req, res) => {
-    res.sendFile(path.join(process.cwd(), 'html/user.html'));
-})
+
 
 
 module.exports = router
