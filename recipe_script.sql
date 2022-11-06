@@ -1,7 +1,6 @@
 -- drop database recipe;	
 CREATE DATABASE IF NOT EXISTS recipe;
 USE recipe;
--- select * from ingridient;
 CREATE TABLE recipe(
 recipe_id INT PRIMARY KEY AUTO_INCREMENT,
 recipe_name VARCHAR(40) NOT NULL,
@@ -25,21 +24,18 @@ ALTER TABLE recipe
 ADD FOREIGN KEY (user_id) REFERENCES user(user_id);
 
 CREATE TABLE ingridient (
-ingridient_id INT PRIMARY KEY AUTO_INCREMENT,
-ingridient_name VARCHAR (20) UNIQUE NOT NULL,
-recipe_id INT,
-FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id)
+ingridient_name VARCHAR (30) PRIMARY KEY
 
-??????????????????????
+
 );
  
  CREATE TABLE ingridient_recipe (
  ingridient_recipe_id INT PRIMARY KEY AUTO_INCREMENT,
  recipe_id INT,
  FOREIGN KEY(recipe_id) REFERENCES recipe(recipe_id),
- ingridient_id INT,
- FOREIGN KEY(ingridient_id) REFERENCES ingridient(ingridient_id),
- quantity VARCHAR(4) NOT NULL
+ ingridient_name VARCHAR (30),
+ FOREIGN KEY(ingridient_name) REFERENCES ingridient(ingridient_name),
+ quantity VARCHAR(14) NOT NULL
 -- quantity is in grams/ml
  );
  select * from user;
@@ -66,30 +62,30 @@ BEGIN
 
 END //
 DELIMITER ;
-DELIMITER //
-CREATE PROCEDURE last_recipe_id_ingridient_id () 
-BEGIN
-  SELECT ingridient_id FROM ingridient ORDER BY ingridient_id DESC LIMIT 1;
 
-  SELECT recipe_id FROM recipe ORDER BY recipe_id DESC LIMIT 1;
-
- 
- 
- END //
-DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE insert_ingridients (IN last_recipe_id INT, last_ingridient_id INT, quantity VARCHAR(4), IN ingridient_name VARCHAR(20)) 
+CREATE PROCEDURE insert_ingridients (IN recipe_id INT, IN ingridient_name VARCHAR(30),IN quantity VARCHAR(14)) 
 BEGIN
 INSERT INTO ingridient (ingridient_name) VALUES (ingridient_name);
-INSERT INTO ingridient_recipe (recipe_id,ingridient_id,quantity) VALUES (last_recipe_id,last_ingridient_id,quantity);
+INSERT INTO ingridient_recipe (recipe_id,ingridient_name,quantity) VALUES (recipe_id,ingridient_name,quantity);
 
  
  
  END //
 DELIMITER ;
 
-select * from ingridient_recipe;
+ DELIMITER //
+
+CREATE PROCEDURE last_recipe_id()
+BEGIN
+	SELECT recipe_id FROM recipe ORDER BY recipe_id DESC LIMIT 1;
+
+END //
+
+DELIMITER ;
+
+
  DELIMITER //
 
 CREATE PROCEDURE validate_user()
@@ -99,3 +95,17 @@ BEGIN
 END //
 
 DELIMITER ;
+
+ DELIMITER //
+
+CREATE PROCEDURE get_recipe()
+BEGIN
+	SELECT recipe.recipe_name,recipe.type_of_meal, recipe.description, user.username, user.first_name,user.last_name, ingridient_recipe.ingridient_name,ingridient_recipe.quantity
+    FROM recipe
+    INNER JOIN ingridient_recipe ON recipe.recipe_id = ingridient_recipe.recipe_id
+    INNER JOIN user ON recipe.user_id = user.user_id;
+
+END //
+
+DELIMITER ;
+select * from recipe;

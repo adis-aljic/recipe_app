@@ -3,6 +3,7 @@ const con = require("./connectDB");
 const mysql = require("mysql2")
 const app = express()
 const login_page = require(`./router/login_page`)
+const home_page = require(`./router/home_page`)
 const recipe_page = require(`./router/recipe_page`)
 
 app.use(express.json())
@@ -24,5 +25,6 @@ app.listen(PORT,()=>console.log(`Server is listening on port ${PORT}`));
 
 const db = mysql.createConnection(con)
 db.connect((err) => (err) ? err : console.log("database is connected"));
+app.use("/",home_page)
 app.use(`/user`,login_page);
 app.use(`/recipe`,recipe_page);

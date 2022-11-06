@@ -9,17 +9,17 @@ async function new_recipe (recipe_name,type_of_meal,user_id,description) {
   await conn.end();
   return rows
 }
-async function last_recipe_id_ingridient_id () {
+
+async function insert_ingridients (recipe_id,ingridient_name,quantity) {
   const conn = await mysql.createConnection(con);
-  let sql = `CALL last_recipe_id_ingridient_id();`;
+  let sql = `CALL insert_ingridients(${Number(recipe_id)},"${ingridient_name}","${quantity}");`;
   const [rows, _] = await conn.execute(sql);
   await conn.end();
-  // console.log(rows);
   return rows
 }
-async function insert_ingridients (last_recipe_id,last_ingridient_id,quantity) {
+async function last_recipe_id () {
   const conn = await mysql.createConnection(con);
-  let sql = `CALL insert_ingridients("${last_recipe_id}","${last_ingridient_id}","${quantity}");`;
+  let sql = `CALL last_recipe_id();`;
   const [rows, _] = await conn.execute(sql);
   await conn.end();
   // console.log(rows);
@@ -29,6 +29,6 @@ async function insert_ingridients (last_recipe_id,last_ingridient_id,quantity) {
 
 module.exports = {
     new_recipe,
-    last_recipe_id_ingridient_id,
-    insert_ingridients
+    insert_ingridients,
+    last_recipe_id
 }
