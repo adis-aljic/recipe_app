@@ -16,9 +16,17 @@ async function register_user (username, password, first_name, last_name, safe_wo
   await conn.end();
   return rows
 }
+async function return_password () {
+  const conn = await mysql.createConnection(con);
+  let sql = `CALL return_password()`;
+  const [rows, _] = await conn.execute(sql);
+  await conn.end();
+  return rows
+}
 
 
 module.exports = {
     login_verification,
-    register_user
+    register_user,
+    return_password
 }

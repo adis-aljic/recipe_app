@@ -1,7 +1,17 @@
-
-fetch("http://localhost:3000/search")
+console.log("Aaaaaa");
+fetch("http://localhost:3000/search",{
+    headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+})
 .then((resolve)=> resolve.json())
 .then((data)=>{
+    console.log("Bbbbbb");
+    console.log(data);
+     $(`#results_recipe`).append(data)
+
+})
 
 $(document).ready(() =>{
 const heading = document.createElement("h4")
@@ -27,4 +37,3 @@ const table_data = document.createElement("td")
 
 })
 
-})

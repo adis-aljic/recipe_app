@@ -30,10 +30,8 @@ router.post(`/search`, (req, res) => {
             result.ingridients.push(element.ingridient_name)
             result.quantity.push(element.quantity)
         });
-        console.log(result);
         if(search.toUpperCase() == data[0][0].recipe_name){
             res.json(result)
-           .redirect("/")
         }
 
 

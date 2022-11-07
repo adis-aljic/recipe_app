@@ -6,6 +6,9 @@ const { new_recipe,insert_ingridients,last_recipe_id } = require("../models/reci
 router.get("/:id", (req, res) => {
     res.sendFile(path.join(process.cwd(), 'html/user.html'));
 })
+router.get("/rec", (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'html/sussces_added_recipe.html'));
+})
 
 router.post(`/addrecipe`, (req,res)=>{
 const {recipe_name,type_of_meal,description, user_id ,ingridients,quantity} = req.body
@@ -19,6 +22,7 @@ new_recipe(recipe_name.toUpperCase(),type_of_meal,user_id,description.toUpperCas
             const quantity_ingridient = quantity[i];
             insert_ingridients(data[0][0].recipe_id,ingridient.toUpperCase(),quantity_ingridient).then(() =>{
                 console.log("results");
+                res.redirect("recipe/rec")
                 
             })
             
